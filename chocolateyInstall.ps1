@@ -16,7 +16,7 @@ $checksumType = 'sha256'
 
 $url = "http://download.qt.io/archive/qt/$qt_major_minor/$qt_ver/$installer"
 
-$installDir = "C:\\Qt\\Qt$qt_major_minor"
+$installDir = "C:\\Qt1"
 
 # component names https://github.com/qtproject/qtsdk/tree/master/packaging-tools/configurations/pkg_templates/pkg_592
 $selectedPackages = 'qt.592.win32_msvc2015'
@@ -160,16 +160,11 @@ Controller.prototype.FinishedPageCallback = function() {
 $out_installer_script = $ExecutionContext.InvokeCommand.ExpandString($installer_script)
 
 $tmp_install_script = New-TemporaryFile
-$tmp_install_script.FullName
-$out_installer_script >> $tmp_install_script.FullName
-
-$tmp_install_script = New-TemporaryFile
-echo $tmp_install_script.FullName
 
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines($tmp_install_script.FullName, $out_installer_script, $Utf8NoBomEncoding)
 
-$installerArgs = "-v" #"-v --platform minimal"
+$installerArgs = "-v --platform minimal"
 
 #echo ".\$installer" $installerArgs --script $tmp_install_script.FullName
 
