@@ -54,6 +54,8 @@ function log() {
 }
 
 function Controller() {
+	//set in silent mode no gui
+	gui.setSilent(true);
     installer.installationFinished.connect(function() {
         gui.clickButton(buttons.NextButton);
     });
@@ -164,11 +166,12 @@ $tmp_install_script = New-TemporaryFile
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines($tmp_install_script.FullName, $out_installer_script, $Utf8NoBomEncoding)
 
-$installerArgs = "-v --platform minimal"
+#args: "--platform minimal" are not available in windows
+$installerArgs = "-v "
 
-#echo ".\$installer" $installerArgs --script $tmp_install_script.FullName
+echo ".\$installer" $installerArgs --script $tmp_install_script.FullName
 
- & ".\$installer" $installerArgs --script $tmp_install_script.FullName
+& ".\$installer" $installerArgs --script $tmp_install_script.FullName
 
 # cleanup
 # del $tmp_install_script.FullName
