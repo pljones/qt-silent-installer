@@ -1,25 +1,23 @@
 # source https://download.qt.io/archive/qt/5.9/5.9.2/qt-opensource-windows-x86-5.9.2.exe.mirrorlist
 
-$packageName = 'qt-opensource-windows'
+$packageName = 'qt-opensource-windows-x86'
 
+# ** FINAL OPENSOURCE OFFLINE INSTALLER **
 $qt_major = '5'
-$qt_minor = '9'
-$qt_patch = '2'
+$qt_minor = '12'
+$qt_patch = '10'
 
 $qt_ver = "$qt_major.$qt_minor.$qt_patch"
 $qt_major_minor = "$qt_major.$qt_minor"
 
-$installer = "$packageName-x86-$qt_ver.exe"
+$installer = "$packageName-$qt_ver.exe"
 
-$checksum = '4b4a81c0ccf2d2a0e638f53c01995f7cf0673b3a0e2bdcdb40caed1e5c2cd1f8'
-$checksumType = 'sha256'
+$url = "http://download.qt.io/official_releases/qt/$qt_major_minor/$qt_ver/$installer"
 
-$url = "http://download.qt.io/archive/qt/$qt_major_minor/$qt_ver/$installer"
+$installDir = "\\Qt"
 
-$installDir = "C:\\Qt1"
-
-# component names https://github.com/qtproject/qtsdk/tree/master/packaging-tools/configurations/pkg_templates/pkg_592
-$selectedPackages = 'qt.592.win32_msvc2015'
+# component names https://github.com/qtproject/qtsdk/tree/master/packaging-tools/configurations/pkg_templates/pkg_qt5_5101
+$selectedPackages = 'qt.qt5.5101.win64_msvc2017_64'
 
 $installer_script = @"
 
